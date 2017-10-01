@@ -1,4 +1,4 @@
-var generateMapping = function(){
+var getMappings = function(){
   return {
     "fsu": ["fsu sucks!", "fsu < uf"],
     "seminoles": ["people who didn't get into UF", "semi-NULLS"],
@@ -9,43 +9,47 @@ var generateMapping = function(){
 }
 
 var getWords = function(){
-  return Object.keys(generateMapping());
+  return Object.keys(getMappings());
 }
 
 var getReplacement = function(original){
-  var mapping = generateMapping();
+  var mapping = getMappings();
   var replacements = mapping[original];
   var index = Math.floor(Math.random() * (replacements.length));
   return replacements[index];
 }
 
-var elements = document.getElementsByTagName('*');
+var doReplacement = function(){
+  var wordsToReplace = getWords();
+  var elements = document.getElementsByTagName('*'); // Gives all elements on the page
 
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
+  for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
 
-    console.log(element.childNodes);
-    for (var j = 0; j < element.childNodes.length; j++) {
-        var node = element.childNodes[j];
-        var nodeReplaced = false;
+      for (var j = 0; j < element.childNodes.length; j++) {
+          var node = element.childNodes[j];
 
-        if (node.nodeType === 3) {
-          var text = node.nodeValue;
+          if (node.nodeType === Node.TEXT_NODE) {
+            var text = node.nodeValue;
 
-          var wordsToReplace = getWords();
-          for (var k = 0; k < wordsToReplace.length; k++){
-            var word = wordsToReplace[k];
-            var replacement = getReplacement(word);
-            var regex = new RegExp(word, "gi");
+            for (var k = 0; k < wordsToReplace.length; k++){
+              var word = wordsToReplace[k];
+              var replacement = getReplacement(word);
 
-            // gi means global (all matches not just first) and case insensitive
-            var replacedText = text.replace(regex, replacement);
+              // gi means global (all matches not just first) and case insensitive
+              var replacedText = text.replace(new RegExp(word, "gi"), replacement);
 
-            if (replacedText !== text && !nodeReplaced) {
-              element.replaceChild(document.createTextNode(replacedText), node);
-              nodeReplaced = true;
+              if (replacedText !== text) {
+                var newNode = document.createTextNode(replacedText);
+                element.replaceChild(newNode, node);
+
+                node = newNode
+                text = replacedText
+              }
             }
           }
-        }
-    }
+      }
+  }
 }
+
+doReplacement();
