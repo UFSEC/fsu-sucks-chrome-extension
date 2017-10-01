@@ -1,4 +1,4 @@
-successfully# Chrome Extension Tutorial
+# Chrome Extension Tutorial
 Welcome! Today we'll be taking a look at how to build an extension for Google Chrome. The extension we will be building today will be replacing text on web pages related to Florida State University (such as FSU, Seminoles, etc.) with more accurate text (such as FSU Sucks, fsu < uf, etc.).
 
 This extension is relatively simple and is designed to teach you the basics of how to make a chrome extension that can interact with the contents of a web page. Once you know how to do that, there are tons of possibilities for cool stuff you can do!
