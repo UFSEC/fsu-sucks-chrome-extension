@@ -41,7 +41,7 @@ Our manifest.js file is going to look like this:
     {
       "matches": [
         "http://*/*",
-        "https://*/*",
+        "https://*/*"
       ],
       "js": [
         "content.js"
