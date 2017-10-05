@@ -24,7 +24,7 @@ The first thing you'll need to do is create a manifest file named 'manifest.json
 
 The very first thing we'll need to create is a manifest file named manifest.json. This manifest is nothing more than a metadata file in JSON format that contains properties like your extension's name, description, version number and so on. At a high level, we will use it to declare to Chrome what the extension is going to do, and what permissions it requires in order to do those things. To learn more about the manifest, read the Manifest File Format documentation.
 
-Our manifest.js file is going to look like this:
+Our manifest.json file is going to look like this:
 
 ```JSON
 {
@@ -168,8 +168,8 @@ for (var k = 0; k < wordsToReplace.length; k++){
     var newNode = document.createTextNode(replacedText);
     element.replaceChild(newNode, node);
 
-    node = newNode
-    text = replacedText
+    node = newNode;
+    text = replacedText;
   }
 }
 ```
@@ -208,8 +208,8 @@ var doTheReplacement = function(){
                 var newNode = document.createTextNode(replacedText);
                 element.replaceChild(newNode, node);
 
-                node = newNode
-                text = replacedText
+                node = newNode;
+                text = replacedText;
               }
             }
           }

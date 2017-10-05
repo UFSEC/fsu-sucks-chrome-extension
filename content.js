@@ -43,8 +43,8 @@ var doReplacement = function(){
                 var newNode = document.createTextNode(replacedText);
                 element.replaceChild(newNode, node);
 
-                node = newNode
-                text = replacedText
+                node = newNode;
+                text = replacedText;
               }
             }
           }
